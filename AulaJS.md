@@ -211,6 +211,160 @@
     console.log(mostrar(usuarios));
 ```
 
+- Exercicio 6
+
+```js
+    let div = document.querySelector('.contain');
+    let botao = document.querySelector('button');
+    let lista = ['red', 'blue', 'green', 'yellow', 'gold', 'blueviolet', 'magenta', 'black', 'white', 'lightgreen', 'salmon', 'lightblue', 'lightskyblue'];
+   
+    botao.onclick = function(){
+        let container = document.createElement('div');
+        let numero = Math.floor(Math.random() * (14 - 0));
+
+        container.style.height = '100px';
+        container.style.width = '100px';
+        container.style.border = '1px solid black';
+        container.style.backgroundColor = lista[numero];
+    
+        div.appendChild(container); 
+    };
+```
+- Exercicio 7
+
+```js
+    let div = document.querySelector('.contain');
+    let botao = document.querySelector('button');
+
+
+    function randomCor(){
+        let letter = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++){
+            color += letter[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    
+    botao.onclick = function(){
+        let container = document.createElement('div');
+
+        container.style.height = '100px';
+        container.style.width = '100px';
+        container.style.border = '1px solid black';
+        container.style.boxShadow = `0 0 30px black`;
+        container.style.backgroundColor = randomCor();
+        
+        div.appendChild(container); 
+        console.log(randomCor());
+};
+
+```
+
+- Exercicio 8
+
+```js
+    let ul = document.querySelector('ul');
+    let listas = ['Diego', 'Gabriel', 'Lucas'];
+
+    for (lista of listas){
+        let li = document.createElement('li');
+        let text = document.createTextNode(lista);
+
+        li.appendChild(text);
+        ul.appendChild(li);
+    }
+```
+
+- Exercicio 9
+
+```js
+    let nomes = ['Diego', 'Gabriel', 'Lucas'];
+    let ul = document.querySelector('ul');
+    let input = document.querySelector('input');
+
+    function addItem(text) {
+        let li = document.createElement('li');
+        let texto = document.createTextNode(text);
+        li.appendChild(texto);
+        ul.appendChild(li);
+    }
+    function adicionar() {
+        if (input.value.trim()) {
+            addItem(input.value);
+            input.value = "";
+        } else {
+            alert("Campo em Branco");
+        }
+    }
+    for (nome of nomes) {
+        addItem(nome);
+    }
+
+```
+
+- App de Todos
+
+```js
+    let listElement = document.querySelector('ul');
+    let inputElement = document.querySelector('input');
+    let buttonElement = document.querySelector('button');
+
+    let todos = JSON.parse(localStorage.getItem('list_todos'));
+
+    function renderTodos(){
+        listElement.innerHTML = '';
+        for (todo of todos){
+            let todoElement = document.createElement('li');
+            let todoText = document.createTextNode(todo);
+
+            let linkElement = document.createElement('a');
+
+            linkElement.setAttribute('href', '#');
+
+            let pos = todos.indexOf(todo);
+            linkElement.setAttribute('onclick', 'deleteTodo(' + pos + ')');
+
+            let linkText = document.createTextNode('Excluir');
+
+            linkElement.appendChild(linkText);
+
+            todoElement.appendChild(todoText);
+            todoElement.appendChild(linkElement);
+
+            listElement.appendChild(todoElement);
+        }
+    }
+
+    renderTodos();
+
+    function addTodo(){
+        let todoText = inputElement.value;
+
+        todos.push(todoText);
+        inputElement.value = '';
+        renderTodos();
+        saveToStorage();
+    }
+
+    buttonElement.onclick = function(){
+        addTodo();
+    }
+
+    function deleteTodo(pos){
+        todos.splice(pos, 1);
+        renderTodos();
+        saveToStorage();
+    }
+
+    function saveToStorage(){
+
+        localStorage.setItem('list_todos', JSON.stringify(todos));
+
+    }
+
+```
+
 - Manipulação de DOM
 
 - Requisições assíncronas
