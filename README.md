@@ -2,4 +2,4 @@
 
 ### Básicamente adiciona tarefas digitadas no "INPUT", além da possibilidade de deletalas.
 
-> dirosaki.github.io/Lista-de-Tarefas
+> https://dirosaki.github.io/Lista-de-Tarefas
